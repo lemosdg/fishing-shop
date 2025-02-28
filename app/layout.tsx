@@ -1,4 +1,5 @@
 import "./globals.css";
+import Sidebar from "../components/Sidebar";
 
 export default function RootLayout({
 	children,
@@ -7,7 +8,11 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body>{children}</body>
+			<body>
+				<header className="w-full bg-neutral-800 h-48"></header>
+				<Sidebar></Sidebar>
+				{children}
+			</body>
 		</html>
 	);
 }
