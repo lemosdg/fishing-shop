@@ -4,10 +4,16 @@ import React, { useState } from "react";
 import Link from "next/link";
 
 const Sidebar = () => {
-	const [openMenu, setOpenMenu] = useState<string | null>(null);
+	const [openMenus, setOpenMenus] = useState<{ [key: string]: boolean }>({
+		menu1: false,
+		menu2: false,
+	});
 
 	const toggleMenu = (menu: string) => {
-		setOpenMenu(openMenu === menu ? null : menu);
+		setOpenMenus((prev) => ({
+			...prev,
+			[menu]: !prev[menu],
+		}));
 	};
 
 	return (
@@ -21,7 +27,7 @@ const Sidebar = () => {
 						>
 							📁 Menú 1
 						</button>
-						{openMenu === "menu1" && (
+						{openMenus.menu1 && (
 							<ul className="pl-4">
 								<li>
 									<Link
@@ -50,7 +56,7 @@ const Sidebar = () => {
 						>
 							📁 Menú 2
 						</button>
-						{openMenu === "menu2" && (
+						{openMenus.menu2 && (
 							<ul className="pl-4">
 								<li>
 									<Link
